@@ -2,6 +2,10 @@
 #define mysystem_H
 
 #include <QWidget>
+#include "creature.h"
+#include "cow.h"
+#include "grass.h"
+#include "tiger.h"
 
 class testcreature{
 public:
@@ -53,6 +57,9 @@ private:
     //更新系统，这里写process
     void updatesystem();
     QList<testcreature*> creaturelist;
+    QList<Tiger*> tigerlist;
+    QList<Cow*> cowlist;
+    QList<Grass*> grasslist;
     double w;
     double h;
 };
