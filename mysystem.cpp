@@ -42,20 +42,20 @@ void mysystem::initSystem(){
     const double energyGrass = 1e2, energyCow = 1e3, energyTiger = 1e4;
     srand(0);
     for (int i = 0; i < numGrass; ++i)
-        grasslist.push_back(0.0, energyGrass, 0,   // 构造函数还有很多要改
+        grasslist.push_back(new Grass(0.0, energyGrass, 0,   // 构造函数还有很多要改
                             rand()/double(RAND_MAX)*this->width(),
-                            rand()/double(RAND_MAX)*this->height());
+                            rand()/double(RAND_MAX)*this->height()));
     for (int i = 0; i < numGroupCow; ++i) {                  // Cow群落生成
         double centerx = rand()/double(RAND_MAX)*this->width(),
                 centery = rand()/double(RAND_MAX)*this->height();
         const double limx = 10, limy = 10;
         for (int j = 0; j < numCowPerG; ++j)
-            cowlist.push_back(rand()/double(RAND_MAX)*limx-limx/2+centerx,
-                                rand()/double(RAND_MAX)*limy-limy/2+centery);
+            cowlist.push_back(new Cow(rand()/double(RAND_MAX)*limx-limx/2+centerx,
+                                rand()/double(RAND_MAX)*limy-limy/2+centery));
     }
     for (int i = 0; i < numTiger; ++i)
-        tigerlist.push_back(rand()/double(RAND_MAX)*this->width(),
-                            rand()/double(RAND_MAX)*this->height());
+        tigerlist.push_back(new Tiger(rand()/double(RAND_MAX)*this->width(),
+                            rand()/double(RAND_MAX)*this->height()));
 }
 
 void mysystem::drawsystem(QPainter *painter){
