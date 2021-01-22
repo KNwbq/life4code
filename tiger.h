@@ -7,21 +7,20 @@
 
 class Tiger:public Creature {
 public:
-        virtual int getspeed() = 0;//every species has its own random speed
-        virtual void energyloss(int) = 0;//how we define the energy loss, using speed or else?
+        virtual double getspeed() = 0;//every species has its own random speed
+        virtual void energyloss(double) = 0;//how we define the energy loss, using speed or else?
         virtual bool ishungry() = 0;
-        int getenergy();
-        int displayx();
-        int displayy();
-        Tiger(int, int, int, int, int, int);
-
+        double getenergy();
+        double displayx();
+        double displayy();
+        Tiger(double, double, double, double, double, double);
 
 private:
-        const int matingage;//the age whether the tigers can mating
-        const int energy_threshhold;//when tiger is hungry
+        const double matingage;//the age whether the tigers can mating
+        const double energy_threshhold;//when tiger is hungry
 };
 
-Tiger::Tiger(int speed_, int energy_, int x, int y, int matingage_, int energy_threshhold_):matingage(matingage_), energy_threshhold(energy_threshhold_) {
+Tiger::Tiger(double speed_, double energy_, double x, double y, double matingage_, double energy_threshhold_):matingage(matingage_), energy_threshhold(energy_threshhold_) {
         speed = speed_;
         energy = energy_;
         coordinatex = x; 
@@ -29,11 +28,11 @@ Tiger::Tiger(int speed_, int energy_, int x, int y, int matingage_, int energy_t
         hungry = false;
 }
 
-int Tiger::getspeed() { return speed; }
-void Tiger::energyloss(int cost) { energy -= cost; if(energy < energy_threshhold) hungry = true; }
+double Tiger::getspeed() { return speed; }
+void Tiger::energyloss(double cost) { energy -= cost; if(energy < energy_threshhold) hungry = true; }
 bool Tiger::ishungry() { return hungry; }
-int Tiger::getenergy() { return energy; }
-int Tiger::displayx() { return coordinatex; }
-int Tiger::displayy() { return coordinatey; }
+double Tiger::getenergy() { return energy; }
+double Tiger::displayx() { return coordinatex; }
+double Tiger::displayy() { return coordinatey; }
 
 #endif // TIGER_H

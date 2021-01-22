@@ -7,21 +7,20 @@
 
 class Cow:public Creature {
 public:
-        virtual int getspeed() = 0;//every species has its own random speed
-        virtual void energyloss(int) = 0;//how we define the energy loss, using speed or else?
+        virtual double getspeed() = 0;//every species has its own random speed
+        virtual void energyloss(double) = 0;//how we define the energy loss, using speed or else?
         virtual bool ishungry() = 0;
-        int getenergy();
-        int displayx();
-        int displayy();
-        Cow(int, int, int, int, int, int);
-
+        double getenergy();
+        double displayx();
+        double displayy();
+        Cow(double, double, double, double, double, double);
 
 private:
-        const int matingage;//the age whether the Cows can mating
-        const int energy_threshhold;//when Cow is hungry
+        const double matingage;//the age whether the Cows can mating
+        const double energy_threshhold;//when Cow is hungry
 };
 
-Cow::Cow(int speed_, int energy_, int x, int y, int matingage_, int energy_threshhold_):matingage(matingage_), energy_threshhold(energy_threshhold_) {
+Cow::Cow(double speed_, double energy_, double x, double y, double matingage_, double energy_threshhold_):matingage(matingage_), energy_threshhold(energy_threshhold_) {
         speed = speed_;
         energy = energy_;
         coordinatex = x; 
@@ -29,11 +28,11 @@ Cow::Cow(int speed_, int energy_, int x, int y, int matingage_, int energy_thres
         hungry = false;
 }
 
-int Cow::getspeed() { return speed; }
-void Cow::energyloss(int cost) { energy -= cost; if(energy < energy_threshhold) hungry = true; }
+double Cow::getspeed() { return speed; }
+void Cow::energyloss(double cost) { energy -= cost; if(energy < energy_threshhold) hungry = true; }
 bool Cow::ishungry() { return hungry; }
-int Cow::getenergy() { return energy; }
-int Cow::displayx() { return coordinatex; }
-int Cow::displayy() { return coordinatey; }
+double Cow::getenergy() { return energy; }
+double Cow::displayx() { return coordinatex; }
+double Cow::displayy() { return coordinatey; }
 
 #endif // COW_H

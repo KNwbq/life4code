@@ -8,20 +8,20 @@
 
 class Grass: public Creature {
 public:
-        int getspeed();//the speed of grass should be zero
+        double getspeed();//the speed of grass should be zero
         void energyloss();//if a grass doen't be eaten, how does the energy change
         bool ishungry();//will grass be hungry?
-        int getenergy();
-        int displayx();
-        int displayy();
-        Grass(int, int, int, int, int, int);
+        double getenergy();
+        double displayx();
+        double displayy();
+        Grass(double, double, double, double, double, double);
 
 private:
-        const int growth_time;//the time a coordinate need to create grass( grass can grow everwhere by the requirements
-        const int Eloss_speed;//the speed of lossing the energy for grass
+        const double growth_time;//the time a coordinate need to create grass( grass can grow everwhere by the requirements
+        const double Eloss_speed;//the speed of lossing the energy for grass
 };
 
-Grass::Grass(int speed_, int energy_, int x, int y, int growth_, int Eloss):growth_time(growth_), Eloss_speed(Eloss) {
+Grass::Grass(double speed_, double energy_, double x, double y, double growth_, double Eloss):growth_time(growth_), Eloss_speed(Eloss) {
         speed = speed_;
         energy = energy_;
         coordinatex = x; 
@@ -29,11 +29,11 @@ Grass::Grass(int speed_, int energy_, int x, int y, int growth_, int Eloss):grow
         hungry = false;
 }
 
-int Grass::getspeed() { return speed; }
+double Grass::getspeed() { return speed; }
 void Grass::energyloss() { energy -= Eloss_speed; }
 bool Grass::ishungry() {}
-int Grass::getenergy() { return energy; }
-int Grass::displayx() { return coordinatex; }
-int Grass::displayy() { return coordinatey; }
+double Grass::getenergy() { return energy; }
+double Grass::displayx() { return coordinatex; }
+double Grass::displayy() { return coordinatey; }
 
 #endif // GRASS_H

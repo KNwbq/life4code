@@ -6,18 +6,18 @@
 
 class Creature {
 public:
-        virtual int getspeed() = 0;//every species has its own random speed
+        virtual double getspeed() = 0;//every species has its own random speed
         virtual void energyloss() = 0;//how we define the energy loss, using speed or else?
         virtual bool ishungry() = 0;
-        int getenergy();
-        int displayx();
-        int displayy();
+        double getenergy();
+        double displayx();
+        double displayy();
 protected:
-        int speed;
-        int energy;
-        int coordinatex;
-        int coordinatey;
+        double speed;
+        double energy;
+        double coordinatex;
+        double coordinatey;
         bool hungry;
-       //int life_span() whether we build in class or realize it by calculating on energy
+       //double life_span() whether we build in class or realize it by calculating on energy
 };
 #endif // CREATURE_H
