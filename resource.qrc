@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>tiger5.png</file>
+        <file>tiger_sleep.png</file>
+        <file>tiger_PNG23229.png</file>
+        <file>grass.png</file>
+        <file>Coweatgrass.png</file>
+        <file>cow_move.png</file>
+        <file>cow.png</file>
+        <file>ens.png</file>
+        <file>enl.png</file>
+        <file>st.png</file>
+        <file>pause.png</file>
+    </qresource>
+</RCC>

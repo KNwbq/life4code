@@ -37,3 +37,9 @@ HEADERS += \
     tiger.h
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    resource.qrc
+
+
+

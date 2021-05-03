@@ -2,6 +2,7 @@
 #define mysystem_H
 
 #include <QWidget>
+#include <QMouseEvent>
 #include "creature.h"
 #include "cow.h"
 #include "grass.h"
@@ -48,7 +49,9 @@ public:
     ~mysystem();
 protected:
     void paintEvent(QPaintEvent *event) override;
-
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 private:
     //intial mysystem,这里写process
     void initSystem();
@@ -62,6 +65,28 @@ private:
     QList<Grass*> grasslist;
     double w;
     double h;
+<<<<<<< Updated upstream
+=======
+
+    bool day_or_night;
+
+    QPixmap grass_green;
+    QPixmap cow_move;
+    QPixmap tiger_move;
+signals:
+    void go_to_sleep();
+public slots:
+    void get_sleep();
+    void stoptime();
+    void change_speed(int);
+    void addgrass();
+    void addtiger();
+    void addcow();
+    void retime();
+    void scale_inc();
+    void scale_dec();
+//    void tss();
+>>>>>>> Stashed changes
 };
 
 

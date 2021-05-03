@@ -2,18 +2,191 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>587</width>
-    <height>435</height>
+    <width>1000</width>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="mysystem" name="centralWidget"/>
+  <widget class="mysystem" name="centralWidget">
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>580</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="hide_but">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>570</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>hide</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="add_group">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>530</y>
+      <width>221</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="addtiger_but">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/tiger5.png);
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addcow_but">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>20</y>
+       <width>71</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/cow.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addgrass_but">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>61</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/grass.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="scale_inc">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>560</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/ens.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scale_dec">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>560</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/enl.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="play_but">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/st.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stop_but">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;play or pause&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pause.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>horizontalSlider</zorder>
+   <zorder>hide_but</zorder>
+   <zorder>add_group</zorder>
+   <zorder>addgrass_but</zorder>
+   <zorder>scale_inc</zorder>
+   <zorder>scale_dec</zorder>
+   <zorder>play_but</zorder>
+   <zorder>stop_but</zorder>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -22,8 +195,172 @@
    <extends>QWidget</extends>
    <header location="global">mysystem.h</header>
    <container>1</container>
+<<<<<<< Updated upstream
   </customwidget>
  </customwidgets>
  <resources/>
  <connections/>
+=======
+   <slots>
+    <signal>go_to_sleep()</signal>
+    <slot>get_sleep()</slot>
+    <slot>retime()</slot>
+    <slot>stoptime()</slot>
+    <slot>addcow()</slot>
+    <slot>addtiger()</slot>
+    <slot>addgrass()</slot>
+    <slot>change_speed(int)</slot>
+    <slot>scale_inc()</slot>
+    <slot>scale_dec()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>centralWidget</sender>
+   <signal>go_to_sleep()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>get_sleep()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>play_but</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>retime()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stop_but</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>stoptime()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>135</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addcow_but</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>addcow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addgrass_but</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>addgrass()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>centralWidget</receiver>
+   <slot>change_speed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scale_inc</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>scale_inc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>718</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addtiger_but</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>addtiger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scale_dec</sender>
+   <signal>clicked()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>scale_dec()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>866</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+>>>>>>> Stashed changes
 </ui>
