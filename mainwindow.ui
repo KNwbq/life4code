@@ -195,12 +195,6 @@
    <extends>QWidget</extends>
    <header location="global">mysystem.h</header>
    <container>1</container>
-<<<<<<< Updated upstream
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
-=======
    <slots>
     <signal>go_to_sleep()</signal>
     <slot>get_sleep()</slot>
@@ -362,5 +356,4 @@
    </hints>
   </connection>
  </connections>
->>>>>>> Stashed changes
 </ui>

@@ -1,19 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include<QDebug>
+#include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-<<<<<<< Updated upstream
-    setWindowTitle("Basic_Design");
-=======
     setWindowTitle("Enclosed System");
     connect(ui->hide_but,SIGNAL(clicked(bool)),this,SLOT(hide_them()));
     connect(ui->stop_but,SIGNAL(clicked(bool)),this,SLOT(play_or_pause()));
     ui->play_but->setHidden(1);
->>>>>>> Stashed changes
 }
 
 MainWindow::~MainWindow()

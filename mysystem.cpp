@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-#include "mysystem.h"
-#include <QPainter>
-#include <QPainterPath>
-#include<QDebug>
-#include <QTimer>
-#include <stdlib.h>
-#include <time.h>
-=======
 ﻿#include "mysystem.h"
 bool got_sleep=0;
 int map_w=2000,map_h=1236;
@@ -17,68 +8,28 @@ double addtigerv=0,addgrassv=0,addcowv=0;
 //QPixmap tiger_move(":/tiger_PNG23229.png");
 //QPixmap cow_move(":/cow_move.png");
 //QPixmap grass_green(":/grass.png");
->>>>>>> Stashed changes
 
 mysystem::mysystem(QWidget *parent)
     :QWidget(parent)
 {
-<<<<<<< Updated upstream
-    parent->setGeometry(QRect(0,0,800,600));
-    this->setGeo(800,600);
-    qDebug()<<this->width();
-=======
     tiger_move.load(":/tiger_PNG23229.png");
     cow_move.load(":/cow_move.png");
     grass_green.load(":/grass.png");
     srand(time(NULL));
     this->setGeo(1000,618);
->>>>>>> Stashed changes
     initSystem();
-    QTimer *timer= new QTimer(this);
+    timer= new QTimer(this);
     connect(timer,&QTimer::timeout,this,[=]{
         updatesystem();
         update();
     });
-<<<<<<< Updated upstream
-    timer->start(100);
-=======
     timer->start(init_timer);
->>>>>>> Stashed changes
 }
 mysystem::~mysystem(){
 }
 
 void mysystem::paintEvent(QPaintEvent *event){
     Q_UNUSED(event)
-<<<<<<< Updated upstream
-    QPainter painter(this);
-    painter.fillRect(this->rect(),Qt::white);
-    drawsystem(&painter);
-}
-
-void mysystem::initSystem(){
-    // testcreature *a1= new testcreature(Qt::blue,this->width()/2,this->height());
-    // creaturelist.push_back(a1);
-    // qDebug()<<this->width()<<this->height();
-    // testcreature *a2=new testcreature(Qt::red,this->width(),this->height()/2);
-    // creaturelist.push_back(a2);
-    // testcreature *a3 =new testcreature(Qt::green,400,300);
-    // creaturelist.push_back(a3);
-    const int numGrass = 1000, numGroupCow = 10, numCowPerG = 10, numTiger = 10;
-    const double energyGrass = 1e2, energyCow = 1e3, energyTiger = 1e4;
-    srand(0);
-    for (int i = 0; i < numGrass; ++i)
-        grasslist.push_back(new Grass(0.0, energyGrass, 0,   // 构造函数还有很多要改
-                            rand()/double(RAND_MAX)*this->width(),
-                            rand()/double(RAND_MAX)*this->height()));
-    for (int i = 0; i < numGroupCow; ++i) {                  // Cow群落生成
-        double centerx = rand()/double(RAND_MAX)*this->width(),
-                centery = rand()/double(RAND_MAX)*this->height();
-        const double limx = 10, limy = 10;
-        for (int j = 0; j < numCowPerG; ++j)
-            cowlist.push_back(new Cow(rand()/double(RAND_MAX)*limx-limx/2+centerx,
-                                rand()/double(RAND_MAX)*limy-limy/2+centery));
-=======
     QPixmap pixmap(size()*2);
     QPainter painter(&pixmap);
     painter.setRenderHints(QPainter::HighQualityAntialiasing
@@ -130,7 +81,7 @@ double mysystem::ld_delay(double x){
 }
 
 void mysystem::initSystem(){
-    const int numGrass = 300, numGroupCow = 6, numCowPerG = 20, numTiger = 5;//
+    const int numGrass = 300, numGroupCow = 6, numCowPerG = 20, numTiger = 20;//
     qDebug()<<map_w;
     for (int i = 0; i < numGrass; ++i)
         grasslist.insert(new Grass(1000,
@@ -148,26 +99,11 @@ void mysystem::initSystem(){
         int tmp = rand()%2;
         tigerlist.insert(new Tiger(2000,rand()/double(RAND_MAX)*(map_w-200)+100,
                                    rand()/double(RAND_MAX)*(map_h-200)+100,tmp,cnt));
->>>>>>> Stashed changes
     }
-    for (int i = 0; i < numTiger; ++i)
-        tigerlist.push_back(new Tiger(rand()/double(RAND_MAX)*this->width(),
-                            rand()/double(RAND_MAX)*this->height()));
 }
 
 void mysystem::drawsystem(QPainter *painter){
-    for(testcreature* iter:creaturelist){
-        painter->setBrush(iter->getcolor());
-       // qDebug()<<iter->getcolor();
-      //  qDebug()<<iter->getx()<<iter->gety();
-        painter->drawEllipse(QPointF(iter->getx(),iter->gety()),10,10);
 
-<<<<<<< Updated upstream
-    }
-}
-
-void mysystem::updatesystem(){
-=======
     //    QLinearGradient Linear(100,120,300,350);
     //    Linear.setColorAt(0,Qt::darkGray);
     //    Linear.setColorAt(1,Qt::white);
@@ -687,7 +623,6 @@ void mysystem::addgrass(){
 void mysystem::change_speed(int x){
     x/=5;
     x++;
-    //    qDebug()<<x;
     timer->setInterval(init_timer/x);
 }
 void mysystem::scale_inc(){
@@ -705,6 +640,4 @@ void mysystem::scale_dec(){
 //    int a=1;
 //}
 
->>>>>>> Stashed changes
 
-}

@@ -1,4 +1,4 @@
-#ifndef mysystem_H
+﻿#ifndef mysystem_H
 #define mysystem_H
 
 #include <QWidget>
@@ -7,31 +7,18 @@
 #include "cow.h"
 #include "grass.h"
 #include "tiger.h"
-
-class testcreature{
-public:
-    testcreature(QColor c,double xx,double yy):owncolor(c),x(xx),y(yy){
-
-    }
-    ~testcreature(){
-
-    }
-    QColor getcolor(){
-        return owncolor;
-    }
-    double getx(){
-        return x;
-    }
-    double gety(){
-        return y;
-    }
-
-
-private:
-    QColor owncolor;
-    int x,y;
-};
-
+#include <set>
+#include <QPainter>
+#include <QPainterPath>
+#include <QDebug>
+#include <QTimer>
+#include <QPixmap>
+#include <stdlib.h>
+#include<queue>
+#include <time.h>
+#include<complex>
+#include<cmath>
+using namespace std;
 class mysystem: public QWidget
 {
     Q_OBJECT
@@ -47,26 +34,38 @@ public:
     }
     explicit mysystem(QWidget *parent = nullptr);
     ~mysystem();
+    QTimer *timer;
+    int cnt=0;
+    int daylong=1200;
+    void normalize(double &, double &);
+    complex<double> normalize(complex<double>);
 protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 private:
-    //intial mysystem,这里写process
+    QPointF m_nowPoint;
+    QPointF m_lastPoint;
     void initSystem();
-    //递归绘制
     void drawsystem(QPainter *painter);
-    //更新系统，这里写process
     void updatesystem();
-    QList<testcreature*> creaturelist;
-    QList<Tiger*> tigerlist;
-    QList<Cow*> cowlist;
-    QList<Grass*> grasslist;
+    void sleep_energy();
+    void Hang_out(Creature*);
+    void match();
+    void matchCG();
+    void freeWalk();
+    void takeFood();
+    void clearDeath();
+    double ld_delay(double);
+    void updateEnergy();
+    void motherCheck();
+    void motherFetch();
+    set<Tiger*> tigerlist;
+    set<Cow*> cowlist;
+    set<Grass*> grasslist;
     double w;
     double h;
-<<<<<<< Updated upstream
-=======
 
     bool day_or_night;
 
@@ -86,7 +85,6 @@ public slots:
     void scale_inc();
     void scale_dec();
 //    void tss();
->>>>>>> Stashed changes
 };
 
 
