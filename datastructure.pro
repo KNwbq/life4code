@@ -31,7 +31,8 @@ SOURCES += \
     tiger.cpp \
     grass.cpp \
     mammal.cpp \
-    creature.cpp
+    creature.cpp \
+    form.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,12 +41,14 @@ HEADERS += \
     creature.h \
     grass.h \
     tiger.h \
-    mammal.h
+    mammal.h \
+    form.h
 
 
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    form.ui
 
 RESOURCES += \
     resource.qrc

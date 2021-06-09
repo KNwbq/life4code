@@ -2,9 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::MainWindow)
 {
+    qDebug()<<"herefuck";
     ui->setupUi(this);
     setWindowTitle("Enclosed System");
     connect(ui->hide_but,SIGNAL(clicked(bool)),this,SLOT(hide_them()));
@@ -22,6 +23,9 @@ void MainWindow::hide_them(){
     if(ui->hide_but->text()=="hide")
     ui->hide_but->setText("show");
     else ui->hide_but->setText("hide");
+}
+void MainWindow::setnum(int x, int y, int z){
+    ui->centralWidget->initSystem(x,y,z);
 }
 
 void MainWindow::play_or_pause(){

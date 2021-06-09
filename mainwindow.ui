@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -16,7 +16,15 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="mysystem" name="centralWidget">
+  <widget class="mysystem" name="centralWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>618</height>
+    </rect>
+   </property>
    <widget class="QSlider" name="horizontalSlider">
     <property name="geometry">
      <rect>
@@ -178,14 +186,6 @@
      <string/>
     </property>
    </widget>
-   <zorder>horizontalSlider</zorder>
-   <zorder>hide_but</zorder>
-   <zorder>add_group</zorder>
-   <zorder>addgrass_but</zorder>
-   <zorder>scale_inc</zorder>
-   <zorder>scale_dec</zorder>
-   <zorder>play_but</zorder>
-   <zorder>stop_but</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

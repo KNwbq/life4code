@@ -39,6 +39,7 @@ public:
     int daylong=1200;
     void normalize(double &, double &);
     complex<double> normalize(complex<double>);
+    void initSystem(int,int,int);
 protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
@@ -47,7 +48,7 @@ protected:
 private:
     QPointF m_nowPoint;
     QPointF m_lastPoint;
-    void initSystem();
+    
     void drawsystem(QPainter *painter);
     void updatesystem();
     void sleep_energy();

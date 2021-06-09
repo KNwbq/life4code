@@ -26,6 +26,7 @@ public:
         double coordinatey;
         std::complex<double> loc, vel;
         double probability;
+        bool ifsleep;
        //double life_span() whether we build in class or realize it by calculating on energy
 };
 #endif // CREATURE_H

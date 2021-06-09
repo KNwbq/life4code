@@ -1,6 +1,6 @@
 ﻿#include "mysystem.h"
 bool got_sleep=0;
-int map_w=2000,map_h=1236;
+int map_w=3000,map_h=618*3;
 int init_timer=1000/24;
 double scale_ofpix=1;
 double shiftx=0,shifty=0,lastshiftx=0,lastshifty=0;
@@ -17,7 +17,6 @@ mysystem::mysystem(QWidget *parent)
     grass_green.load(":/grass.png");
     srand(time(NULL));
     this->setGeo(1000,618);
-    initSystem();
     timer= new QTimer(this);
     connect(timer,&QTimer::timeout,this,[=]{
         updatesystem();
@@ -30,7 +29,7 @@ mysystem::~mysystem(){
 
 void mysystem::paintEvent(QPaintEvent *event){
     Q_UNUSED(event)
-    QPixmap pixmap(size()*2);
+    QPixmap pixmap(size()*3);
     QPainter painter(&pixmap);
     painter.setRenderHints(QPainter::HighQualityAntialiasing
                            | QPainter::Antialiasing
@@ -45,6 +44,10 @@ void mysystem::paintEvent(QPaintEvent *event){
     painter.drawPixmap(shiftx,shifty,map_w/scale_ofpix,map_h/scale_ofpix,pixmap);
     painter.setBrush(Qt::red);
     painter.drawEllipse(QPointF(500,309),2,2);
+//    painter.setFont();
+    painter.drawText(800,10,QString("cow: ")+QString::number(cowlist.size()));
+    painter.drawText(800,50,QString("tiger: ")+QString::number(tigerlist.size()));
+    painter.drawText(800,90,QString("grass: ")+QString::number(grasslist.size()));
 }
 bool win_move=0;
 void mysystem::mousePressEvent(QMouseEvent *event){
@@ -55,6 +58,8 @@ void mysystem::mousePressEvent(QMouseEvent *event){
     if (addgrassv==1) grasslist.insert(new Grass(1000,(event->localPos().x()-shiftx)*scale_ofpix,(event->localPos().y()-shifty)*scale_ofpix,10,10,cnt));
     if (!(addtigerv||addcowv||addgrassv)){
         m_lastPoint=event->localPos();
+        lastshiftx=shiftx;
+        lastshifty=shifty;
         win_move=1;
     }
     update();
@@ -80,9 +85,10 @@ double mysystem::ld_delay(double x){
     return x;
 }
 
-void mysystem::initSystem(){
-    const int numGrass = 300, numGroupCow = 6, numCowPerG = 20, numTiger = 20;//
-    qDebug()<<map_w;
+void mysystem::initSystem(int x,int y,int z){
+    
+    const int numGrass = z, numGroupCow = 5, numCowPerG = x/5, numTiger = y;//
+    qDebug()<<"fuckkkkkk";
     for (int i = 0; i < numGrass; ++i)
         grasslist.insert(new Grass(1000,
                                    rand()/double(RAND_MAX)*map_w,
@@ -111,6 +117,9 @@ void mysystem::drawsystem(QPainter *painter){
     //    painter->setBrush(Qt::darkGray);
     //    painter->drawRect(0,0,800,600);
     for(Grass* iter:grasslist){
+        double tmpx=iter->getLoc().real(),tmpy=iter->getLoc().imag();
+        if (!(tmpx>=-shiftx*scale_ofpix && tmpx<=(-shiftx+1000)*scale_ofpix && tmpy>=-shifty*scale_ofpix && tmpy<=(-shifty+618)*scale_ofpix)) continue;
+        
         //        painter->setBrush(iter->owncolor);
         //        painter->drawEllipse(QPointF(iter->getLoc().real(), iter->getLoc().imag()),2,2);
         //        painter->drawImage(QRectF(iter->getLoc().real(), iter->getLoc().imag(),iter->getLoc().real()+50, iter->getLoc().imag()+50),cow_move,QRectF(0,0,28,18));
@@ -119,33 +128,40 @@ void mysystem::drawsystem(QPainter *painter){
         //        painter->drawImage(QRectF(iter->getLoc().real(), iter->getLoc().imag(),50, 50),cow_move);
     }
     for(Cow* iter:cowlist){
-        if (!iter->ishungry())
-            painter->setBrush(iter->owncolor);
-        else painter->setBrush(Qt::darkBlue);
+        double tmpx=iter->getLoc().real(),tmpy=iter->getLoc().imag();
+        if (!(tmpx>=-shiftx*scale_ofpix && tmpx<=(-shiftx+1000)*scale_ofpix && tmpy>=-shifty*scale_ofpix && tmpy<=(-shifty+618)*scale_ofpix)) continue;
+        painter->setBrush(Qt::white);
+        painter->drawRect(tmpx-4,tmpy-4,32,8);
+        painter->setBrush(Qt::green);
+        painter->drawRect(tmpx-4,tmpy-4,iter->energy/iter->energy_threshhold2*32,8);
+        painter->drawEllipse(tmpx,tmpy,2,2);
         if(cnt-iter->getage()>iter->matingage)
         {
             if(cnt-iter->lastgen>100)
-                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),40,40,cow_move);
+                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,cow_move);
             //                painter->drawEllipse(QPointF(iter->getLoc().real(), iter->getLoc().imag()),5,5);
             else
-                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),40,40,cow_move);
+                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,cow_move);
         }
         else
-            painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),20,20,cow_move);
+            painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,cow_move);
     }
     for(auto iter:tigerlist){
-        if (!iter->ishungry())
-            painter->setBrush(iter->sex?Qt::red : Qt::yellow);
-        else painter->setBrush(Qt::darkGray);
+        double tmpx=iter->getLoc().real(),tmpy=iter->getLoc().imag();
+        if (!(tmpx>=-shiftx*scale_ofpix && tmpx<=(-shiftx+1000)*scale_ofpix && tmpy>=-shifty*scale_ofpix && tmpy<=(-shifty+618)*scale_ofpix)) continue;
+        painter->setBrush(Qt::white);
+        painter->drawRect(tmpx-4,tmpy-4,32,8);
+        painter->setBrush(Qt::green);
+        painter->drawRect(tmpx-4,tmpy-4,iter->energy/iter->energy_threshhold2*32,8);
         if(cnt-iter->getage()>iter->matingage)
         {
             if(cnt-iter->lastgen>100)
-                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),40,40,tiger_move);
+                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,tiger_move);
             else
-                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),40,40,tiger_move);
+                painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,tiger_move);
         }
         else
-            painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),20,20,tiger_move);
+            painter->drawPixmap(iter->getLoc().real(), iter->getLoc().imag(),50,50,tiger_move);
     }
     painter->setBrush(QColor(128, 128, 128, 150*ld_delay(sin(cnt*3.14159/(daylong/2))+1/3)));
     if(cnt%daylong==50||cnt%daylong==(daylong/2)-50) emit go_to_sleep();
@@ -457,6 +473,16 @@ void mysystem::motherFetch() {
 }
 
 void mysystem::Hang_out(Creature* x){
+    if (x->ifsleep==1){
+        if (got_sleep==1) return;
+        x->ifsleep=0;
+    }
+    else if (got_sleep==1){
+        if (rand()%15<11) {
+            x->ifsleep=1;
+            return;
+        }
+    }
     if(typeid(*x).name()==typeid(Tiger).name()){
         Tiger* xx=dynamic_cast<Tiger*>(x);
         double vecx=0,vecy=0,svecx=0,svecy=0;
@@ -562,10 +588,6 @@ complex<double> mysystem::normalize(complex<double> z){
 
 void mysystem::updatesystem(){
     cnt++;
-    if(got_sleep==1){
-        sleep_energy();
-        return;
-    }
     motherCheck();
     match();
     motherFetch();
@@ -586,8 +608,7 @@ void mysystem::updatesystem(){
 }
 void mysystem::get_sleep(){
     got_sleep=!got_sleep;
-    update();
-    //    qDebug()<<got_sleep;
+    qDebug()<<got_sleep;
 }
 void mysystem::stoptime(){
     timer->stop();
@@ -606,7 +627,6 @@ void mysystem::addcow(){
         add_state_clear();
         addcowv=1;
     }
-    update();
 }
 void mysystem::addtiger(){
     if (addtigerv==1) addtigerv=0;
@@ -614,7 +634,6 @@ void mysystem::addtiger(){
         add_state_clear();
         addtigerv=1;
     }
-    update();
 }
 void mysystem::addgrass(){
     if (addgrassv==1) addgrassv=0;
@@ -622,25 +641,23 @@ void mysystem::addgrass(){
         add_state_clear();
         addgrassv=1;
     }
-    update();
 }
 void mysystem::change_speed(int x){
     x/=5;
     x++;
+    //    qDebug()<<x;
     timer->setInterval(init_timer/x);
-    update();
 }
 void mysystem::scale_inc(){
     scale_ofpix*=2;
-    shiftx=-(-shiftx/2-250);
-    shifty=-(-shifty/2-154.5);
-    update();
+    shiftx=-(-shiftx/2-1000/4);
+    shifty=-(-shifty/2-618/4);
+
 }
 void mysystem::scale_dec(){
     scale_ofpix/=2;
-    shiftx=-(-shiftx*2+500);
-    shifty=-(-shifty*2+309);
-    update();
+    shiftx=-(-shiftx*2+1000/2);
+    shifty=-(-shifty*2+618/2);
 }
 //void mysystem::tss(){
 //    int a=1;
