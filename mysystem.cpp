@@ -586,6 +586,7 @@ void mysystem::updatesystem(){
 }
 void mysystem::get_sleep(){
     got_sleep=!got_sleep;
+    update();
     //    qDebug()<<got_sleep;
 }
 void mysystem::stoptime(){
@@ -605,6 +606,7 @@ void mysystem::addcow(){
         add_state_clear();
         addcowv=1;
     }
+    update();
 }
 void mysystem::addtiger(){
     if (addtigerv==1) addtigerv=0;
@@ -612,6 +614,7 @@ void mysystem::addtiger(){
         add_state_clear();
         addtigerv=1;
     }
+    update();
 }
 void mysystem::addgrass(){
     if (addgrassv==1) addgrassv=0;
@@ -619,22 +622,25 @@ void mysystem::addgrass(){
         add_state_clear();
         addgrassv=1;
     }
+    update();
 }
 void mysystem::change_speed(int x){
     x/=5;
     x++;
     timer->setInterval(init_timer/x);
+    update();
 }
 void mysystem::scale_inc(){
     scale_ofpix*=2;
     shiftx=-(-shiftx/2-250);
     shifty=-(-shifty/2-154.5);
-
+    update();
 }
 void mysystem::scale_dec(){
     scale_ofpix/=2;
     shiftx=-(-shiftx*2+500);
     shifty=-(-shifty*2+309);
+    update();
 }
 //void mysystem::tss(){
 //    int a=1;
