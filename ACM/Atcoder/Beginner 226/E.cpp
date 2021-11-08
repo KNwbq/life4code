@@ -15,7 +15,7 @@ void dfs(int x, int fa) {
 	for (int y: g[x])
 		if (y != fa) dfs(y, x);
 }
- 
+
 int main() {
 	scanf("%d%d", &n, &m);
 	for (int i = 0; i < m; ++i) {
