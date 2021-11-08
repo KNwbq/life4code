@@ -1,0 +1,63 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": "Ruby(Debug Local File)",
+        "type": "Ruby",
+        "request": "launch",
+        "program": "${file}"
+    },
+        // {
+        //     "name": "(gdb) Windows 上的 Bash 启动",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "输入程序名称，例如 ${workspaceFolder}/a.exe",
+        //     "args": [],
+        //     "stopAtEntry": false,
+        //     "cwd": "${workspaceFolder}",
+        //     "environment": [],
+        //     "externalConsole": false,
+        //     "pipeTransport": {
+        //         "debuggerPath": "/usr/bin/gdb",
+        //         "pipeProgram": "${env:windir}\\system32\\bash.exe",
+        //         "pipeArgs": ["-c"],
+        //         "pipeCwd": ""
+        //     },
+        //     "setupCommands": [
+        //         {
+        //             "description": "为 gdb 启用整齐打印",
+        //             "text": "-enable-pretty-printing",
+        //             "ignoreFailures": true
+        //         }
+        //     ]
+        // },
+        {
+            "name": "Python",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "C++",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "D:\\VSCODE\\exe\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\mingw-w64\\mingw32\\bin\\gdb.exe",
+            "preLaunchTask": "g++",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
