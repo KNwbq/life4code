@@ -1,5 +1,8 @@
 #include<bits/stdc++.h>
-#define debug(x) cerr<<#x<<":"<<x<<endl
+#define LL long long
+#define MP make_pair
+#define PB push_back
+#define ms(x, a) memset(x, a, sizeof(x))
 using namespace std;
 
 template <typename _T>
@@ -22,4 +25,18 @@ void print(T x, char t) {
     print(x); putchar(t);
 }
 
-int main() {}
+void debug() {
+    cerr << endl;
+}
+ 
+template<typename Head, typename... Tail>
+void debug(Head H, Tail... T) {
+    cerr << " " << H;
+    debug(T...);
+}
+ 
+#define dbg(...) cerr << "[" << #__VA_ARGS__ << "]:", debug(__VA_ARGS__)
+
+int main() {
+    return 0;
+}
