@@ -2,6 +2,8 @@
 #define LL long long
 #define MP make_pair
 #define PB push_back
+#define X first
+#define pii pair<int, int>
 #define ms(x, a) memset(x, a, sizeof(x))
 using namespace std;
 

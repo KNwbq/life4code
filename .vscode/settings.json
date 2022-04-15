@@ -86,7 +86,8 @@
         "xhash": "cpp",
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
-        "strstream": "cpp"
+        "strstream": "cpp",
+        "stop_token": "c"
     },
     "editor.lineNumbers":"relative",
     "C_Cpp.errorSquiggles": "Enabled",
