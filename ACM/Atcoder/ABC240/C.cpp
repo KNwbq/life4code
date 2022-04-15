@@ -1,35 +1,67 @@
-#include<iostream>
-#include<cstring>
+#include<bits/stdc++.h>
+#define LL long long
+#define MP make_pair
+#define PB push_back
+#define X first
+#define Y second
+#define pii pair<int, int>
+#define ms(x, a) memset(x, a, sizeof(x))
 using namespace std;
 
-const int maxn = 120;
-const int maxc = 10050;
-int arry[maxn];
-bool noflag[maxc];
-bool vis[maxn];
-int n, x, a, b;
-
-bool rec_subset(int* arr, int i, int s) {
-	if (s == 0) return true;
-	else if (s < 0) return false;
-	else if (i == 0) return arr[i] == s;
-	else {
-		int A = rec_subset(arr, i - 1, s);
-		int B = rec_subset(arr, i - 1, s - arr[i]);
-		return A || B;
-	}
+template <typename _T>
+inline void read(_T &f) {
+    f = 0; _T fu = 1; char c = getchar();
+    while (c < '0' || c > '9') { if (c == '-') { fu = -1; } c = getchar(); }
+    while (c >= '0' && c <= '9') { f = (f << 3) + (f << 1) + (c & 15); c = getchar(); }
+    f *= fu;
+}
+ 
+template <typename T>
+void print(T x) {
+    if (x < 0) putchar('-'), x = -x;
+    if (x < 10) putchar(x + 48);
+    else print(x / 10), putchar(x % 10 + 48);
+}
+ 
+template <typename T>
+void print(T x, char t) {
+    print(x); putchar(t);
 }
 
+void debug() {
+    cerr << endl;
+}
+ 
+template<typename Head, typename... Tail>
+void debug(Head H, Tail... T) {
+    cerr << " " << H;
+    debug(T...);
+}
+ 
+#define dbg(...) cerr << "[" << #__VA_ARGS__ << "]:", debug(__VA_ARGS__)
+const int maxn = 105;
+const int maxx = 1000020;
+int dp[maxn][maxx];
+
 int main() {
-	memset(vis, 0, sizeof(vis));
-	memset(noflag, 0, sizeof(noflag));
+	int n, x, a, b;
+	ms(dp, 0);
 	cin >> n >> x;
+
 	for (int i = 0; i < n; ++i) {
 		cin >> a >> b;
-		x -= a;
-		arry[i] = b - a;
+		if (i == 0) {
+			dp[i][a] = 1;
+			dp[i][b] = 1;
+			continue;
+		}
+		for (int j = 10000; j > 0; --j) {
+			if (j-a > 0) dp[i][j] = dp[i][j] || dp[i-1][j-a];
+			if (j-b > 0) dp[i][j] = dp[i][j] || dp[i-1][j-b];
+		}
 	}
-	if (rec_subset(arry, n-1, x)) cout << "Yes";
-	else cout << "No";
-	return 0;
+
+	cout << (dp[n-1][x] == 1? "Yes": "No");
+
+    return 0;
 }
