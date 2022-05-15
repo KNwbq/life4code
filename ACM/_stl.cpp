@@ -139,8 +139,10 @@
 //priority_queue
 // #include<queue>
 // #include<iostream>
+// #include<string>
 // using namespace std;
 
+// priority_queue<string, vector<string>, greater<string> > p0;
 // priority_queue<string, vector<string>, greater<string> > p0;
 
 // int main() {
@@ -154,4 +156,23 @@
 // 	}
 // 	return 0;
 // }
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> alg{12, 13, 14, 2, 3, 20, 18,  1, 7, 16};
+vector<int> name{23, 2, 17};
+
+int main() {
+	int ans = 10000, pos = 0;
+	for (int i = 0; i <= alg.size() - 3; ++i) {
+		int res = pow(alg[i] - name[0], 2) + pow(alg[i+1] - name[1], 2) + pow(alg[i+2] - name[2], 2);
+		if (res < ans) {
+			ans = res;
+			pos = i;
+		}
+	}
+	cout << pos;
+
+}
 
